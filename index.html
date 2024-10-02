@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulário Dinâmico</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f5f5f5;
+        margin: 20px;
+        padding: 0;
+      }
+
+      /* formulario */
+      form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+      }
+      .form-group,
+      .form-group-radio {
+        margin-bottom: 15px;
+      }
+      label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      input[type="text"],
+      input[type="date"],
+      input[type="file"],
+      select {
+        width: 90%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      input[type="radio"] {
+        margin-right: 5px;
+      }
+
+      .hidden {
+        display: none;
+      }
+      button {
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #218838;
+      }
+      .informacoes {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        max-width: 600px;
+        margin: 20px auto;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+      h1 {
+        color: #87ceeb;
+        margin-bottom: 10px;
+      }
+      p {
+        color: #9b9999;
+        line-height: 1.5;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 5px;
+      }
+      .tagline {
+        display: block;
+        font-weight: bold;
+        font-size: 1.2em;
+        margin: 15px 0;
+        color: #87ceeb;
+      }
+      .whatsapp-list {
+        list-style-type: none;
+        padding: 0;
+      }
+      .whatsapp-list li {
+        margin: 30px 0;
+      }
+      .whatsapp-list a {
+        text-decoration: none;
+        color: #fff;
+        background-color: #25d366;
+        padding: 10px 15px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+      .whatsapp-list a:hover {
+        background-color: #128c7e;
+      }
+      /* notificação */
+      #notification {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #4caf50;
+        color: white;
+        padding: 16px;
+        border-radius: 5px;
+        z-index: 1000;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="informacoes">
+      <h1>AD BRÁS VILA MARA</h1>
+      <p>Ainda não é membro?</p>
+      <p>
+        Não perca tempo, preencha o formulário para que possamos fazer seu
+        cadastro de membro.
+      </p>
+      <p>
+        Caso surja alguma dúvida, entre em contato clicando em um dos números de
+        WhatsApp:
+      </p>
+      <ul class="whatsapp-list">
+        <li>
+          <a
+            href="https://wa.me/5511980567020?text=A%20paz%20do%20Senhor,%20irmã%20Sandra.%20Tenho%20dúvidas%20acerca%20do%20que%20preciso%20enviar%20para%20me%20membrar."
+            target="_blank"
+            >WhatsApp - Irmã Sandra</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://wa.me/55119898708985?text=A%20paz%20do%20Senhor,%20irmã%20Goreth.%20Tenho%20dúvidas%20acerca%20do%20que%20preciso%20enviar%20para%20me%20membrar."
+            target="_blank"
+            >WhatsApp - Irmã Goreth</a
+          >
+        </li>
+      </ul>
+      <br /><br />
+      <span class="tagline">Vila Mara, a Igreja que Ama.</span>
+    </div>
+
+    <form id="formulario">
+      <!-- Nome -->
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" required />
+      </div>
+
+      <!-- Número de Telefone -->
+      <div class="form-group">
+        <label for="telefone">Número de Telefone para Contato</label>
+        <input type="text" id="telefone" name="telefone" required />
+      </div>
+
+      <!-- Foto do CPF -->
+      <div class="form-group">
+        <label for="cpf_foto">Foto do CPF (Imagem ou PDF)</label>
+        <input
+          type="file"
+          id="cpf_foto"
+          name="cpf_foto"
+          accept="image/*,.pdf"
+          required
+        />
+      </div>
+
+      <!-- Estado Civil -->
+      <div class="form-group">
+        <label for="estado_civil">Estado Civil</label>
+        <select id="estado_civil" name="estado_civil" required>
+          <option value="">Selecione...</option>
+          <option value="solteiro">Solteiro(a)</option>
+          <option value="casado">Casado(a)</option>
+          <option value="viuvo">Viúvo(a)</option>
+        </select>
+      </div>
+
+      <!-- Certidão de Casamento (escondido inicialmente) -->
+      <div id="certidao" class="hidden form-group">
+        <label for="certidao_casamento"
+          >Envie a Certidão de Casamento (Imagem ou PDF)</label
+        >
+        <input
+          type="file"
+          id="certidao_casamento"
+          name="certidao_casamento"
+          accept="image/*,.pdf"
+        />
+      </div>
+
+      <!-- Batismo -->
+      <div class="form-group-radio">
+        <label>Já foi batizado antes?</label>
+        <label>
+          <input type="radio" name="batizado" value="sim" required /> Sim
+        </label>
+        <label>
+          <input type="radio" name="batizado" value="nao" required /> Não
+        </label>
+      </div>
+
+      <!-- Informações adicionais sobre batismo (escondido inicialmente) -->
+      <div id="batismo_info" class="hidden form-group">
+        <label for="nome_igreja">Qual o nome da Igreja?</label>
+        <input type="text" id="nome_igreja" name="nome_igreja" />
+
+        <label for="data_batismo">Qual a data de batismo?</label>
+        <input type="date" id="data_batismo" name="data_batismo" />
+      </div>
+
+      <!-- Nível de Escolaridade -->
+      <div class="form-group">
+        <label for="escolaridade">Nível de Escolaridade</label>
+        <input type="text" id="escolaridade" name="escolaridade" required />
+      </div>
+
+      <!-- Profissão -->
+      <div class="form-group">
+        <label for="profissao">Profissão</label>
+        <input type="text" id="profissao" name="profissao" required />
+      </div>
+
+      <!-- Comprovante de Residência -->
+      <div class="form-group">
+        <label for="comprovante_residencia"
+          >Comprovante de Residência (Imagem ou PDF)</label
+        >
+        <input
+          type="file"
+          id="comprovante_residencia"
+          name="comprovante_residencia"
+          accept="image/*,.pdf"
+          required
+        />
+      </div>
+
+      <button type="submit">Enviar</button>
+    </form>
+
+    <div id="notification">Formulário enviado com sucesso!</div>
+
+    <script>
+      // campos do formulario para acoes
+      const form = document.getElementById("formulario");
+      const estadoCivil = document.getElementById("estado_civil");
+      const certidaoCasamento = document.getElementById("certidao");
+      const radioBatizado = document.querySelectorAll("input[name='batizado']");
+      const batismoInfo = document.getElementById("batismo_info");
+      const notification = document.getElementById("notification");
+
+      // mostrar e esconder os campos
+      function toggleFields() {
+        // certidão de casamento
+        if (estadoCivil.value === "casado") {
+          certidaoCasamento.classList.remove("hidden");
+        } else {
+          certidaoCasamento.classList.add("hidden");
+        }
+
+        // batismo
+        const batizado = document.querySelector(
+          "input[name='batizado']:checked"
+        );
+        if (batizado && batizado.value === "sim") {
+          batismoInfo.classList.remove("hidden");
+        } else {
+          batismoInfo.classList.add("hidden");
+        }
+      }
+
+      // quando o estado civil for alterado
+      estadoCivil.addEventListener("change", toggleFields);
+
+      //  quando o batismo for alterado
+      radioBatizado.forEach((radio) => {
+        radio.addEventListener("change", toggleFields);
+      });
+
+      // envio formulario
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // notificacao
+        notification.style.display = "block";
+
+        // tira a notificacao dps de 3s
+        setTimeout(() => {
+          notification.style.display = "none";
+        }, 3000);
+
+        // clicou fora atualiza a pagina
+        document.addEventListener("click", function () {
+          location.reload();
+        });
+      });
+    </script>
+  </body>
+</html>
